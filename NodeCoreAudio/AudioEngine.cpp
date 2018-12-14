@@ -405,10 +405,10 @@ void Audio::AudioEngine::RunAudioLoop(){
 			m_bOutputUnderflowed = (error != paNoError);
 		} else {
 			m_bOutputUnderflowed = true;
-#if defined( __WINDOWS__ ) || defined( _WIN32 )
-			Sleep(1);
+#if defined(__APPLE__)
+			usleep(1);
 #else
-			sleep(1);
+			Sleep(1);
 #endif
 		}
 	}
