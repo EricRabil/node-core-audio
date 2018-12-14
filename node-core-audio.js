@@ -41,6 +41,8 @@ function AudioEngine( options ) {
 		framesPerBuffer: 1024,
 		useMicrophone: true
 	};
+
+	let { sendOutput } = options;
 	
     this.options = options || defaultOptions;
 	this.audioEngine = audioEngineImpl.createAudioEngine( this.options );
@@ -112,7 +114,7 @@ function AudioEngine( options ) {
 
 			var outputBuffer = _this.processAudio( input );
 
-			if( validateOutputBufferStructure(outputBuffer) && _this.options.sendOutput !== false )
+			if( validateOutputBufferStructure(outputBuffer) && sendOutput !== false )
 				_this.audioEngine.write( outputBuffer );
 			
 			// Call our UI updates now that all the DSP work has been done
