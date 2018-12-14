@@ -112,7 +112,7 @@ function AudioEngine( options ) {
 
 			var outputBuffer = _this.processAudio( input );
 
-			if( validateOutputBufferStructure(outputBuffer) )
+			if( validateOutputBufferStructure(outputBuffer) && this.options.sendOutput !== false )
 				_this.audioEngine.write( outputBuffer );
 			
 			// Call our UI updates now that all the DSP work has been done
